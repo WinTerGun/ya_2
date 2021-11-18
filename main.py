@@ -8,7 +8,8 @@ from PyQt5.QtWidgets import QMainWindow, QApplication
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
-        uic.loadUi("main.ui", self)
+        self.qp = QPainter()
+        uic.loadUi("UI.ui", self)
         self.pushButton.clicked.connect(self.push)
         self.flag = False
 
@@ -18,7 +19,6 @@ class MainWindow(QMainWindow):
 
     def paintEvent(self, event):
         if self.flag:
-            self.qp = QPainter()
             self.qp.begin(self)
             self.draw()
             self.qp.end()
